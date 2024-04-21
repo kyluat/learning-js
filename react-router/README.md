@@ -23,6 +23,11 @@ Currently, two official plugins are available:
 
 #### Keywords to remember
 
+1. RouterProvider has props: router
+2. router is an object that are created by createBrowserRouter
+3. createBrowserRouter has arguments: [{path, element, elementError}]
+4. useRouteError is a hook that returns the error of the route
+
 ##### RouterProvider
 you can use it in the root of your app: main.jsx
 
