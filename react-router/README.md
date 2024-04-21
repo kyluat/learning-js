@@ -10,6 +10,7 @@ Keywords to remember:
 - nested routes
 - Outlet
 - Children in the router object
+- Link: just like <a href=""></a> in html that point to a route
 
 ```jsx
 const router = createBrowserRouter([{
