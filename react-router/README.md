@@ -1,80 +1,37 @@
-# React + Vite
+# Nested Routes
 
-# Install
-```shell
-npm create vite@latest project-folder-name -- --template react
-cd project-folder-name
-npm install
-vite dev
-```
+by using field children in the route object of the routes array,
+we can define nested routes.
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+in order for root to render the nested routes, we need to use the
+<Outlet /> component from react-router-dom.
 
-Currently, two official plugins are available:
+Keywords to remember:
+- nested routes
+- Outlet
+- Children in the router object
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react/README.md) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
-
-## Tests and Basic Understand
-
-### React Router
-
-- [React Router Overview](https://reactrouter.com/en/main/start/overview)
-
-#### Keywords to remember
-
-1. RouterProvider has props: router
-2. router is an object that are created by createBrowserRouter
-3. createBrowserRouter has arguments: [{path, element, elementError}]
-4. useRouteError is a hook that returns the error of the route
-
-##### RouterProvider
-you can use it in the root of your app: main.jsx
-
-example: 
 ```jsx
-ReactDOM.createRoot(document.getElementById('root')).render(
-  <React.StrictMode>
-    {/*<App />*/}
-      <RouterProvider router={router} />
-  </React.StrictMode>,
-)
-```
-
-
-##### createBrowserRouter
-use this to declare the routes like /, /about, /contact
-* path: which path
-* element: which element to render for each route
-* elementError which elementError to render if the route is not found
-
-example: 
-```jsx
-
-const routes = [
-    {
-        path: '/',
-        element: <Home />,
-        elementError: <NotFound />
-    },
-    {
-        path: '/about',
-        element: <About />,
-    },
-    {
-        path: '/contact',
+const router = createBrowserRouter([{
+    path: '/',
+    element: <Root />,
+    errorElement: <ErrorPage />,
+    children: [{
+        path: 'contacts/:id',
         element: <Contact />,
-    }
-]
-
+    }]
+}]);
 ```
 
+## Outlet
+```jsx
+function Root() {
+    return (
+        <div>
+            <h1>React Router</h1>
+            <Outlet />
+        </div>
+    );
+}
 
-
-
-
-
-
-
-
-
+```
